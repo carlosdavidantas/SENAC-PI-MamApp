@@ -15,14 +15,22 @@ export default function LoginScreen() {
             <View style={styles.backContainer}>
                 <View style={styles.secondBackContainer}>
                     <View style={styles.thirdContainer}>
-                        <Text style={styles.titlesText}>Login</Text>
-                        <Text style={styles.texts}>Email</Text>
-                        <TextInput style={styles.input}></TextInput>
-                        <Text style={styles.texts}>Senha</Text>
-                        <TextInput style={styles.input}></TextInput>
+                        <Text style={styles.titleText}>Login</Text>
+                        
+                        <View style={styles.fieldsBackground}>
+                            <Text style={styles.texts}>Email</Text>
+                            <TextInput style={styles.input}></TextInput>
+                        </View>
+
+                        <View style={styles.fieldsBackground}>
+                            <Text style={styles.texts}>Senha</Text>
+                            <TextInput style={styles.input} secureTextEntry={true}></TextInput>
+                        </View>
+
                         <TouchableOpacity style={styles.button} onPress={() => router.push("/home")}>
                             <Text style={styles.buttonsText}>ENTRAR</Text>
                         </TouchableOpacity>
+
                     </View>
                 </View>
             </View>
@@ -55,19 +63,25 @@ const styles = StyleSheet.create({
         opacity: 0.5,
         borderRadius: 10
     },
-    titlesText: {
+    titleText: {
         fontFamily: "Montserrat",
         fontWeight: "bold",
         fontSize: 50,
         color: "#9847FF"
     },
+    fieldsBackground:{
+        width: "90%",
+        height: "20%",
+        justifyContent: "space-evenly",
+    },
     texts: {
+        width: "80%",
         fontSize: 20,
     },
     input: {
         backgroundColor: "#F5F5F5",
-        width: "80%",
-        height: "7%"
+        width: "100%",
+        height: "30%"
     },
     button: {
         backgroundColor: "#9847FF",
