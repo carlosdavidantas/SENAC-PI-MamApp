@@ -1,22 +1,33 @@
 import { View, Text, TouchableOpacity, TextInput, Dimensions, StyleSheet } from 'react-native';
+import { useRouter } from "expo-router"
+import { StatusBar } from "expo-status-bar";
+import { SafeAreaView } from "react-native";
 
-export function LoginScreen() {
-    return (
-        <View style={styles.backContainer}>
-            <View style={styles.secondBackContainer}>
-                <View style={styles.thirdContainer}>
-                    <Text style={styles.titlesText}>Login</Text>
-                    <Text style={styles.texts}>Email</Text>
-                    <TextInput style={styles.input}></TextInput>
-                    <Text style={styles.texts}>Senha</Text>
-                    <TextInput style={styles.input}></TextInput>
-                    <TouchableOpacity style={styles.button}>
-                        <Text style={styles.buttonsText}>ENTRAR</Text>
-                    </TouchableOpacity>
+export default function LoginScreen() {
+    const router = useRouter();
+    return <>
+        <StatusBar
+            hidden={false}
+            translucent={true}
+            style="dark"
+        />
+        <SafeAreaView>
+            <View style={styles.backContainer}>
+                <View style={styles.secondBackContainer}>
+                    <View style={styles.thirdContainer}>
+                        <Text style={styles.titlesText}>Login</Text>
+                        <Text style={styles.texts}>Email</Text>
+                        <TextInput style={styles.input}></TextInput>
+                        <Text style={styles.texts}>Senha</Text>
+                        <TextInput style={styles.input}></TextInput>
+                        <TouchableOpacity style={styles.button} onPress={() => router.push("/home")}>
+                            <Text style={styles.buttonsText}>ENTRAR</Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
             </View>
-        </View>
-    );
+        </SafeAreaView>
+    </>
 }
 
 const styles = StyleSheet.create({
