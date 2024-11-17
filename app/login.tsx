@@ -1,4 +1,5 @@
 import { View, Text, TouchableOpacity, TextInput, Dimensions, StyleSheet } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from "expo-router"
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaView } from "react-native";
@@ -13,7 +14,7 @@ export default function LoginScreen() {
         />
         <SafeAreaView>
             <View style={styles.backContainer}>
-                <View style={styles.secondBackContainer}>
+                <LinearGradient style={styles.secondBackContainer} colors = {["#A77BFF", "#CCB2FF"]}>
                     <View style={styles.thirdContainer}>
                         <Text style={styles.titleText}>Login</Text>
                         
@@ -32,7 +33,7 @@ export default function LoginScreen() {
                         </TouchableOpacity>
 
                     </View>
-                </View>
+                </LinearGradient>
             </View>
         </SafeAreaView>
     </>
