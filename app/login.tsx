@@ -6,29 +6,29 @@ import { SafeAreaView } from "react-native";
 
 export default function LoginScreen() {
     const router = useRouter();
-    return <>
-        <StatusBar
-            hidden={false}
-            translucent={true}
-            style="dark"
-        />
+    return (
         <SafeAreaView>
+            <StatusBar
+                hidden={false}
+                translucent={true}
+                style="auto"
+            />
             <View style={styles.backContainer}>
                 <LinearGradient style={styles.secondBackContainer} colors = {["#A77BFF", "#CCB2FF"]}>
                     <View style={styles.thirdContainer}>
                         <Text style={styles.titleText}>Login</Text>
                         
                         <View style={styles.fieldsBackground}>
-                            <Text style={styles.texts}>Email</Text>
-                            <TextInput style={styles.input}></TextInput>
+                            <Text style={styles.texts}>E-mail</Text>
+                            <TextInput style={styles.input} placeholder='admin' defaultValue='admin'></TextInput>
                         </View>
 
                         <View style={styles.fieldsBackground}>
                             <Text style={styles.texts}>Senha</Text>
-                            <TextInput style={styles.input} secureTextEntry={true}></TextInput>
+                            <TextInput style={styles.input} secureTextEntry={true} placeholder='admin' defaultValue='admin'></TextInput>
                         </View>
 
-                        <TouchableOpacity style={styles.button} onPress={() => router.push("/home")}>
+                        <TouchableOpacity style={styles.button} onPress={() => router.replace("/home")}>
                             <Text style={styles.buttonsText}>ENTRAR</Text>
                         </TouchableOpacity>
 
@@ -36,7 +36,7 @@ export default function LoginScreen() {
                 </LinearGradient>
             </View>
         </SafeAreaView>
-    </>
+    );
 }
 
 const styles = StyleSheet.create({
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
     input: {
         backgroundColor: "#F5F5F5",
         width: "100%",
-        height: "30%"
+        height: "35%"
     },
     button: {
         backgroundColor: "#9847FF",

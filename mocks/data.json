@@ -1,0 +1,163 @@
+{
+    "homeScreenNotifications": [
+        {
+            "title": "Próximo exame",
+            "description": "Raio-X: 30/09"
+        },
+        {
+            "title": "Apoio psicológico disponível",
+            "description": "Agende uma consulta com nossos psicólogos especializados."
+        },
+        {
+            "title": "Sessão de quimioterapia",
+            "description": "Sua próxima sessão será no dia 05/12."
+        },
+        {
+            "title": "Lembrete de autoexame",
+            "description": "Não se esqueça de fazer seu autoexame este mês."
+        },
+        {
+            "title": "Grupo de apoio",
+            "description": "Participe do nosso grupo de apoio online para compartilhar experiências."
+        },
+        {
+            "title": "Dica de alimentação saudável",
+            "description": "Alimente-se com alimentos ricos em antioxidantes, como frutas vermelhas."
+        },
+        {
+            "title": "Controle de medicamentos",
+            "description": "Não se esqueça de tomar seus medicamentos conforme prescrição médica."
+        }
+    ],
+    "examesResultados": [
+        {
+            "exam": "Mamografia",
+            "date": "15/09"
+        },
+        {
+            "exam": "Raio-X",
+            "date": "30/09"
+        },
+        {
+            "exam": "Ultrassom",
+            "date": "05/10"
+        },
+        {
+            "exam": "Biópsia",
+            "date": "12/10"
+        },
+        {
+            "exam": "Exame de Sangue",
+            "date": "20/10"
+        },
+        {
+            "exam": "Tomografia",
+            "date": "18/11"
+        },
+        {
+            "exam": "Marcadores Tumorais",
+            "date": "25/11"
+        },
+        {
+            "exam": "Teste Genético",
+            "date": "02/12"
+        },
+        {
+            "exam": "PET-Scan",
+            "date": "10/12"
+        },
+        {
+            "exam": "Ressonância Magnética",
+            "date": "15/12"
+        }
+    ],
+    "consultaItems": [
+        {
+            "id": 1,
+            "pacient": "Lúcia",
+            "status": "Sua consulta foi agendada.",
+            "address": "Av Santo Antônio, 112",
+            "time": "13:00",
+            "medicName": "Dr. João",
+            "observation": "Compareça com 15 minutos de antecedência e tenha seus documentos em mãos."
+        },
+        {
+            "id": 2,
+            "pacient": "Lúcia",
+            "status": "Sua consulta foi confirmada.",
+            "address": "Rua das Flores, 89",
+            "time": "09:30",
+            "medicName": "Dra. Carla",
+            "observation": "Não se esqueça de levar o resultado do último exame."
+        },
+        {
+            "id": 3,
+            "pacient": "Lúcia",
+            "status": "Sua consulta foi reagendada.",
+            "address": "Av. Brasil, 135",
+            "time": "15:00",
+            "medicName": "Dr. Roberto",
+            "observation": "Aguarde no setor de oncologia 20 minutos antes da consulta."
+        },
+        {
+            "id": 4,
+            "pacient": "Lúcia",
+            "status": "Sua consulta foi agendada.",
+            "address": "Rua do Carmo, 250",
+            "time": "11:45",
+            "medicName": "Dra. Beatriz",
+            "observation": "Trazer exames anteriores e documentos pessoais."
+        },
+        {
+            "id": 5,
+            "pacient": "Lúcia",
+            "status": "Sua consulta foi confirmada.",
+            "address": "Av. Paraíso, 56",
+            "time": "17:00",
+            "medicName": "Dr. Felipe",
+            "observation": "Não se esqueça de seguir as orientações pré-consulta."
+        },
+        {
+            "id": 6,
+            "pacient": "Lúcia",
+            "status": "Sua consulta foi agendada.",
+            "address": "Rua da Paz, 41",
+            "time": "08:30",
+            "medicName": "Dr. Marcos",
+            "observation": "Leve todos os exames recentes e um documento com foto."
+        },
+        {
+            "id": 7,
+            "pacient": "Lúcia",
+            "status": "Sua consulta foi reagendada.",
+            "address": "Rua dos Três Irmãos, 72",
+            "time": "14:00",
+            "medicName": "Dra. Laura",
+            "observation": "Chegue 20 minutos antes do horário marcado para a triagem."
+        },
+        {
+            "id": 8,
+            "pacient": "Lúcia",
+            "status": "Sua consulta foi confirmada.",
+            "address": "Av. São João, 432",
+            "time": "10:00",
+            "medicName": "Dr. Alexandre",
+            "observation": "Por favor, evite alimentos pesados antes da consulta."
+        }
+    ],
+    "perfil": [
+        {
+            "name": "Lúcia Silva Ferreira",
+            "cpf": "123.456.789-10",
+            "birthday": "15/04/1985",
+            "rg": "123456789",
+            "phoneNumber": "(11) 9 8765-4321",
+            "cep": "01234567",
+            "streetName": "Rua das cucas, 308",
+            "houseNumber": "32",
+            "complement": "Apto 301, Bloco B, Edifício Primavera",
+            "reference": "Próximo ao mercado central"
+        }
+    ],
+    "agendamentos": []
+}

@@ -1,11 +1,30 @@
-import { View, Text, Dimensions, StyleSheet, TouchableOpacity } from 'react-native';
+import { useState, useEffect } from 'react';
+import { View, Dimensions, StyleSheet, FlatList, TouchableOpacity, Text } from 'react-native';
+import ResultadoItem from '@/components/resultadosItems';
 import { useRouter } from "expo-router"
-import { SafeAreaView } from "react-native-safe-area-context";
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { get } from "@/utils/crud.js";
 import { ArrowLeftIcon } from "react-native-heroicons/outline"
 
-export default function LoginScreen() {
+function getResults() {
+    return get("examesResultados");
+}
+
+export default function Resultados() {
     const router = useRouter();
-    return (
+
+    const [results, setResults] = useState([]);
+
+    useEffect(() => {
+        const fetchResults = async () => {
+            const data = await getResults();
+            console.log(data);
+            setResults(data);
+        };
+        fetchResults();
+    }, []);
+
+    return <>
         <SafeAreaView>
 
             <View style={styles.backContainer}>
@@ -17,26 +36,25 @@ export default function LoginScreen() {
                     </View>
 
                     <View style={styles.titleBackground}>
-                        <Text style={styles.titleText}>Exames</Text>
+                        <Text style={styles.titleText}>Resultados</Text>
                     </View>
+                    <FlatList
+                        style={styles.list}
+                        contentContainerStyle={{ paddingTop: 20, paddingBlockEnd: 20, gap: 20, alignItems: "center" }}
+                        data={results}
+                        renderItem={({ item }: { item: { exam: string; date: string } }) => (
+                            <ResultadoItem
+                                examName={item.exam}
+                                examDate={item.date}
 
-                    <View style={styles.buttonsBackground}>
-                        <TouchableOpacity style={styles.pagesButton} onPress={() => router.push("/agendamento")}>
-                            <Text style={styles.textButtons}>Agendamento</Text>
-                        </TouchableOpacity>
-
-                        <TouchableOpacity style={styles.pagesButton} onPress={() => router.push("/resultados")}>
-                            <Text style={styles.textButtons}>Resultados</Text>
-                        </TouchableOpacity>
-
-                        <TouchableOpacity style={styles.pagesButton} onPress={() => router.push("/consultas")}>
-                            <Text style={styles.textButtons}>Consultas</Text>
-                        </TouchableOpacity>
-                    </View>
+                            />
+                        )}
+                        keyExtractor={(item, index) => index.toString()}
+                    />
                 </View>
             </View>
         </SafeAreaView>
-    );
+    </>
 }
 
 const styles = StyleSheet.create({
@@ -49,20 +67,20 @@ const styles = StyleSheet.create({
     },
     secondBackContainer: {
         backgroundColor: "#F2EBFF",
-        justifyContent: "space-between",
+        justifyContent: "center",
         alignItems: "center",
         width: "90%",
         height: "90%",
-        borderRadius: 10,
+        borderRadius: 10
     },
     backButtonBackground: {
         width: "100%",
         height: "5%",
         padding: 10,
     },
-    titleBackground:{
+    titleBackground: {
         width: "100%",
-        height: "5%",
+        height: "7%",
         backgroundColor: "transparent",
         justifyContent: "center",
         alignItems: "center",
@@ -80,23 +98,7 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         color: "#7B39FF"
     },
-    buttonsBackground: {
-        width: "100%",
-        height: "90%",
-        justifyContent: "space-evenly",
-        alignItems: "center",
+    list: {
+        width: "100%"
     },
-    pagesButton: {
-        width: "90%",
-        height: "15%",
-        justifyContent: "center",
-        alignItems: "center",
-        borderRadius: 10,
-        backgroundColor: "#A77BFF"
-    },
-    textButtons: {
-        color: "#FFFFFF",
-        fontSize: 20,
-        fontWeight: "bold"
-    }
-})
+});

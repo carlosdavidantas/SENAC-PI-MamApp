@@ -1,44 +1,58 @@
-import { View, Text, TouchableOpacity, Dimensions, StyleSheet } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
+import { useState, useEffect } from 'react';
+import { View, Text, Dimensions, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
+import HomeScreenItem from '@/components/homeScreenItem';
 import { useRouter } from "expo-router"
-import { StatusBar } from "expo-status-bar";
-import { SafeAreaView } from "react-native";
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { get } from "@/utils/crud.js";
 
-export default function App() {
-
-    return (
-      <View style={styles.container}>
-      {/* Próximo Exame */}
-      <View style={styles.card}>
-        <Text style={styles.title}>Próximo Exame</Text>
-        <Text style={styles.info}>Raio-X: 30/09</Text>
-        <Text style={styles.info}>Ultrassom: 15/11</Text>
-        <Text style={styles.info}>Tomografia abdominal: 22/11</Text>
-      </View>
-
-      {/* Próximas Consultas */}
-      <View style={styles.card}>
-        <Text style={styles.title}>Próximas Consultas</Text>
-        <Text style={styles.info}>Oncologista: 10/10</Text>
-      </View>
-
-      {/* Resultado de Exames */}
-      <View style={styles.card}>
-        <Text style={styles.title}>Resultado de Exames</Text>
-      </View>
-
-      {/* Botões na parte inferior */}
-      <View style={styles.bottomContainer}>
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>Agendar Consulta</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>Perfil</Text>
-        </TouchableOpacity>
-      </View>
-    </View>
-  );
+function getNotifications() {
+    return get("homeScreenNotifications");
 }
+
+export default function LoginScreen() {
+    const router = useRouter();
+    const [notifications, setNotifications] = useState([]);
+
+    useEffect(() => {
+        const fetchNotifications = async () => {
+            const data = await getNotifications();
+            console.log(data);
+            setNotifications(data);
+        };
+        fetchNotifications();
+    }, []);
+
+    return <>
+        <SafeAreaView>
+
+            <View style={styles.backContainer}>
+                <View style={styles.secondBackContainer}>
+                    <FlatList
+                        style={styles.list}
+                        contentContainerStyle={{ paddingTop: 20, gap: 20, alignItems: "center" }}
+                        data={notifications}
+                        renderItem={({ item }: { item: { title: string; description: string } }) => (
+                            <HomeScreenItem
+                                title={item.title}
+                                description={item.description}
+                            />
+                        )}
+                        keyExtractor={(item, index) => index.toString()}
+                    />
+                    <View style={styles.buttonsBackground}>
+                        <TouchableOpacity style={styles.button} onPress={() => router.push("/exames")}>
+                            <Text style={styles.buttonsText}>Exames</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.button} onPress={() => router.push("/perfil")}>
+                            <Text style={styles.buttonsText}>Perfil</Text>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+            </View>
+        </SafeAreaView>
+    </>
+}
+
 const styles = StyleSheet.create({
     backContainer: {
         backgroundColor: "#E2D3FF",
@@ -48,60 +62,35 @@ const styles = StyleSheet.create({
         height: Dimensions.get("window").height,
     },
     secondBackContainer: {
-        backgroundColor: "#A77BFF",
+        backgroundColor: "#F2EBFF",
         justifyContent: "center",
         alignItems: "center",
         width: "90%",
         height: "90%",
         borderRadius: 10
     },
-    thirdContainer: {
-            backgroundColor: "#FFFFFF",
-            width: "80%",
-            height: "80%",
-            justifyContent: "space-evenly",
-            alignItems: "center",
-            opacity: 0.5,
-            borderRadius: 10
-        },
-
-    container: {
-      flex: 1,
-      backgroundColor: '#F4EAF5', 
-      padding: 20,
+    list: {
+        width: "100%"
     },
-    card: {
-      backgroundColor: '#9847FF', 
-      borderRadius: 10,
-      padding: 20,
-      marginVertical: 10,
+    buttonsBackground: {
+        width: "100%",
+        height: "25%",
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "space-evenly",
+        alignItems: "center",
     },
-
-  title: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#fff',
-    marginBottom: 10,
-  },
-  info: {
-    fontSize: 16,
-    color: '#fff',
-  },
-  bottomContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    marginTop: 'auto',
-    marginBottom: 20,
-  },
-  button: {
-    backgroundColor: '#9847FF',
-    padding: 15,
-    borderRadius: 10,
-    alignItems: 'center',
-    width: '40%',
-  },
-  buttonText: {
-    color: '#fff',
-    fontWeight: 'bold',
-  },
+    button: {
+        backgroundColor: "#A77BFF",
+        width: "40%",
+        height: "80%",
+        justifyContent: "center",
+        alignItems: "center",
+        borderRadius: 10,
+    },
+    buttonsText: {
+        color: "#FFFFFF",
+        fontSize: 20,
+        fontWeight: "bold",
+    }
 });
